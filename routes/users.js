@@ -5,7 +5,7 @@ const userRouter = Router();
 
 userRouter.post("/users", addUser);
 
-userRouter.get("/habits/:id", getUserById);
+userRouter.get("/users/:id", getUserById);
 
 userRouter.get("/users", getAllUsers);
 

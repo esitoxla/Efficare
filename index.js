@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import userRouter from "./routes/users.js";
+import drugRouter from "./routes/drugs.js";
 
 //connect to database
 await mongoose.connect(process.env.MONGO_URI);
@@ -16,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 //use routes
-app.use(userRouter)
+app.use(userRouter, drugRouter)
 
 //listen for incoming requests
 app.listen(3010,() =>{
