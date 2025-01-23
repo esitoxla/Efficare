@@ -37,7 +37,7 @@ const drugSchema = new Schema({
   reported_effectiveness: {
     type: String, // Qualitative assessment (e.g., "High", "Moderate", "Low")
     enum: ["High", "Moderate", "Low", "Unknown"],
-    default: "Unknown",
+    default: "Low",
   },
 
   side_effects: {

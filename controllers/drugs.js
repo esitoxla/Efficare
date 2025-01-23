@@ -1,7 +1,6 @@
 import { DrugModel } from "../models/drugs.js";
 import { addDrugValidator, updateDrugValidator } from "../validators/drugs.js";
 
-
 export const addDrug = async (req, res, next) => {
   try {
     //add drug validator
@@ -12,16 +11,15 @@ export const addDrug = async (req, res, next) => {
     //connect to datadase
     const drug = new DrugModel({
       ...value,
-      user: req.auth.id,
+      user: req.auth?.id,
     });
     //save new data
     await drug.save();
     res.status(200).json("drug added successfully!");
   } catch (error) {
-    res.status(422).json({ message: "failed to add drug", error });
+    next (error)
   }
 };
-
 
 export const getDrugById = async (req, res, next) => {
   try {
@@ -33,10 +31,9 @@ export const getDrugById = async (req, res, next) => {
     }
     res.status(200).json(drug);
   } catch (error) {
-    res.status(422).json({ message: "Failed to fetch drug", error });
+    next (error)
   }
 };
-
 
 export const getAllDrugs = async (req, res, next) => {
   try {
@@ -52,7 +49,6 @@ export const getAllDrugs = async (req, res, next) => {
   }
 };
 
-
 export const updateDrug = async (req, res, next) => {
   try {
     const { error, value } = updateDrugValidator.validate(req.body);
@@ -60,8 +56,8 @@ export const updateDrug = async (req, res, next) => {
       return res.status(422).json({ error: error.details });
     }
     const updatedDrug = await DrugModel.findByIdAndUpdate(
-      { _id: req.params.id, user: req.auth.id },
-      req.body,
+      { _id: req.params.id },
+      value,
       { new: true }
     );
     if (!updatedDrug) {
@@ -69,10 +65,9 @@ export const updateDrug = async (req, res, next) => {
     }
     res.status(200).json("drug updated successfully!");
   } catch (error) {
-    res.status(422).json({ message: "Failed to update drug", error });
+    next (error)
   }
 };
-
 
 export const deleteDrug = async (req, res, next) => {
   try {

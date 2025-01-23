@@ -6,12 +6,12 @@ export const addDrugValidator = Joi.object({
     .valid("tablet", "capsule", "syrup", "injection", "cream", "other")
     .required(),
   dosage: Joi.string().required(),
-  approved_date: Joi.date().required(),
+  approved_date: Joi.date(),
   efficacy_rate: Joi.number().required(),
   trials: Joi.number(),
   reported_effectiveness: Joi.string()
     .valid("High", "Moderate", "Low", "Unknown")
-    .default("medium"),
+    .default("Low"),
   side_effects: Joi.string().default(""),
   notes: Joi.string(),
   interactions: Joi.string(),
@@ -19,13 +19,12 @@ export const addDrugValidator = Joi.object({
 
 
 export const updateDrugValidator = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string(),
   type: Joi.string()
-    .valid("tablet", "capsule", "syrup", "injection", "cream", "other")
-    .required(),
-  dosage: Joi.string().required(),
-  approved_date: Joi.date().required(),
-  efficacy_rate: Joi.number().required(),
+    .valid("tablet", "capsule", "syrup", "injection", "cream", "other"),
+  dosage: Joi.string(),
+  approved_date: Joi.date(),
+  efficacy_rate: Joi.number(),
   trials: Joi.number(),
   reported_effectiveness: Joi.string()
     .valid("High", "Moderate", "Low", "Unknown")
