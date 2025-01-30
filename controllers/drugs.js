@@ -21,6 +21,8 @@ export const addDrug = async (req, res, next) => {
   }
 };
 
+
+
 export const getDrugById = async (req, res, next) => {
   try {
     //get data details by id from database
@@ -35,6 +37,8 @@ export const getDrugById = async (req, res, next) => {
   }
 };
 
+
+
 export const getAllDrugs = async (req, res, next) => {
   try {
     const { filter = "{}", sort = "{}", limit = 50, skip = 0 } = req.query;
@@ -48,6 +52,8 @@ export const getAllDrugs = async (req, res, next) => {
     res.status(422).json({ message: "Failed to fetch drugs", error });
   }
 };
+
+
 
 export const updateDrug = async (req, res, next) => {
   try {
@@ -68,6 +74,8 @@ export const updateDrug = async (req, res, next) => {
     next (error)
   }
 };
+
+
 
 export const deleteDrug = async (req, res, next) => {
   try {
