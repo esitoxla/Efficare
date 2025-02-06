@@ -5,6 +5,7 @@ import cors from "cors";
 import userRouter from "./routes/users.js";
 import drugRouter from "./routes/drugs.js";
 import recordRouter from "./routes/records.js";
+import efficacyRouter from "./routes/efficacy.js";
 
 //connect to database
 await mongoose.connect(process.env.MONGO_URI);
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 //use routes
-app.use(userRouter, drugRouter, recordRouter)
+app.use(userRouter, drugRouter, recordRouter, efficacyRouter)
 
 //listen for incoming requests
 app.listen(3010,() =>{
